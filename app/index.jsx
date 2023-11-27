@@ -40,7 +40,7 @@ export default function index() {
             For You
           </Text>
         </Animated.View>
-        <Animated.View entering={FadeInDown.delay(200).springify()}>
+        <Animated.View entering={FadeInDown.delay(300).springify()}>
           <TouchableOpacity
             style={{ height: hp(7), width: wp(80) }}
             className="bg-rose-500 flex items-center justify-center mx-auto rounded-full border-[2px] border-neutral-200"
