@@ -1,7 +1,15 @@
-import { View, Text } from "react-native";
+import { View, Text, LogBox } from "react-native";
 import React from "react";
 import { Stack } from "expo-router";
 
 export default function _layout() {
-  return <Stack screenOptions={{ headerShown: false }} />;
+  LogBox.ignoreLogs(["Warning: Failed prop type"]);
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen
+        name="exercises"
+        options={{ presentation: "fullScreenModal" }}
+      />
+    </Stack>
+  );
 }

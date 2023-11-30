@@ -6,8 +6,10 @@ import {
 } from "react-native-responsive-screen";
 import { bodyParts } from "../constants";
 import { LinearGradient } from "expo-linear-gradient";
+import { router, useRouter } from "expo-router";
 
 export default function BodyParts() {
+  const router = useRouter();
   return (
     <View className="mx-4">
       <Text
@@ -24,16 +26,17 @@ export default function BodyParts() {
         contentContainerStyle={{ paddingBottom: 50, paddingTop: 20 }}
         columnWrapperStyle={{ justifyContent: "space-between" }}
         renderItem={({ item, index }) => (
-          <BodyPartCard item={item} index={index} />
+          <BodyPartCard router={router} item={item} index={index} />
         )}
       />
     </View>
   );
 }
-const BodyPartCard = ({ item, index }) => {
+const BodyPartCard = ({ item, router, index }) => {
   return (
     <View>
       <TouchableOpacity
+        onPress={() => router.push({ pathname: "/exercises", params: item })}
         style={{ width: wp(44), height: wp(52) }}
         className="justify-end flex p-4 mb-4"
       >
@@ -54,7 +57,7 @@ const BodyPartCard = ({ item, index }) => {
           style={{ fontSize: hp(2) }}
           className="text-center text-white font-semibold tracking-wide"
         >
-          {item.name}
+          {item?.name}
         </Text>
       </TouchableOpacity>
     </View>
