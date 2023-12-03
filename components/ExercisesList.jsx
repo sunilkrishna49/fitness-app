@@ -31,21 +31,23 @@ export default function ExercisesList({ data }) {
 const ExerciseCard = ({ item, index, router }) => {
   return (
     <View>
-      <TouchableOpacity className="flex space-y-2 py-3">
+      <TouchableOpacity
+        onPress={() =>
+          router.push({ pathname: "/exercisesDetails", params: item })
+        }
+        className="flex space-y-2 py-3"
+      >
         <View className="bg-neutral-200  rounded-[25px]">
           <Image
             source={{ uri: item.gifUrl }}
             contentFit="cover"
             style={{ width: wp(44), height: wp(52) }}
-            onError={(e) =>
-              console.error("Image load error", e.nativeEvent.error)
-            }
             className="rounded-[25px]"
           />
         </View>
         <Text
           style={{ fontSize: hp(1.4) }}
-          className="font-semibold ml-1 tracking-wide text-neutral-700 "
+          className="font-semibold ml-3 tracking-wide text-neutral-700 "
         >
           {item?.name?.length > 20 ? item.name.slice(0, 20) + "..." : item.name}
         </Text>
