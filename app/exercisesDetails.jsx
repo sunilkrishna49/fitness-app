@@ -8,6 +8,7 @@ import {
 } from "react-native-responsive-screen";
 import Anticons from "react-native-vector-icons/AntDesign";
 import { TouchableOpacity } from "react-native";
+import Animated, { FadeIn, FadeInDown, FadeOut } from "react-native-reanimated";
 
 export default function exercisesDetails() {
   const item = useLocalSearchParams();
@@ -35,20 +36,23 @@ export default function exercisesDetails() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 60 }}
       >
-        <Text
+        <Animated.Text
+          entering={FadeInDown.duration(300).springify()}
           style={{ fontSize: hp(3.5) }}
           className="font-semibold text-neutral-800 tracking-wide"
         >
           {item.name}
-        </Text>
-        <Text
+        </Animated.Text>
+        <Animated.Text
+          entering={FadeInDown.duration(300).delay(100).springify()}
           style={{ fontSize: hp(2) }}
           className="text-neutral-700 tracking-wide"
         >
           Equipment{" "}
           <Text className="font-bold text-neutral-800">{item?.equipment}</Text>
-        </Text>
-        <Text
+        </Animated.Text>
+        <Animated.Text
+          entering={FadeInDown.duration(300).delay(200).springify()}
           style={{ fontSize: hp(2) }}
           className="text-neutral-700 tracking-wide"
         >
@@ -56,29 +60,32 @@ export default function exercisesDetails() {
           <Text className="font-bold text-neutral-800">
             {item?.secondaryMuscles}
           </Text>
-        </Text>
-        <Text
+        </Animated.Text>
+        <Animated.Text
+          entering={FadeInDown.duration(300).delay(300).springify()}
           style={{ fontSize: hp(2) }}
           className="text-neutral-700 tracking-wide"
         >
           Target{" "}
           <Text className="font-bold text-neutral-800">{item?.target}</Text>
-        </Text>
-        <Text
+        </Animated.Text>
+        <Animated.Text
+          entering={FadeInDown.duration(300).delay(400).springify()}
           style={{ fontSize: hp(3) }}
           className="font-semibold text-neutral-800 tracking-wide"
         >
           Instructions
-        </Text>
+        </Animated.Text>
         {item.instructions.split(",").map((instruction, index) => {
           return (
-            <Text
+            <Animated.Text
+              entering={FadeInDown.duration(300).delay((index + 6) * 100)}
               key={instruction}
               style={{ fontSize: hp(1.7) }}
               className="text-neutral-800"
             >
               {instruction}
-            </Text>
+            </Animated.Text>
           );
         })}
       </ScrollView>
